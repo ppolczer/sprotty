@@ -16,7 +16,7 @@
 
 import {
     SShapeElement, Expandable, boundsFeature, expandFeature, fadeFeature, layoutContainerFeature,
-    layoutableChildFeature, RectangularNode, Nameable, nameFeature, SLabel
+    layoutableChildFeature, RectangularNode, Nameable, nameFeature, SLabel, EditableLabel, editLabelFeature
 } from "../../../src";
 
 export class ClassNode extends RectangularNode implements Expandable, Nameable {
@@ -37,6 +37,14 @@ export class ClassNode extends RectangularNode implements Expandable, Nameable {
         return feature === expandFeature || feature === nameFeature || super.hasFeature(feature);
     }
 }
+
+export class EditableSLabel extends SLabel implements EditableLabel {
+    hasFeature(feature: symbol) {
+        return feature === editLabelFeature || super.hasFeature(feature);
+    }
+}
+export class ClassLabel extends EditableSLabel { }
+export class PropertyLabel extends EditableSLabel { }
 
 export class Icon extends SShapeElement {
     size = {
